@@ -32,7 +32,11 @@ export default function OnhoverProp({NewArray,title}) {
           <MenuList onMouseEnter={onOpen} onMouseLeave={onClose}>
           <Grid  templateColumns='repeat(3, 1fr)'>
             {NewArray?.map((el,i) => (
-                <MenuItem key={i}>{el}</MenuItem>
+                <MenuItem key={i}>
+                    <Text>
+                     {el}
+                    </Text>
+                </MenuItem>
             ))}
              </Grid>
             {/* <MenuItem>Download</MenuItem>

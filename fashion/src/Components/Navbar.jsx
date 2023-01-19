@@ -25,6 +25,7 @@ import {
 import { HamburgerIcon, CloseIcon ,MoonIcon,SunIcon} from '@chakra-ui/icons';
 // import { NavLink } from "react-router-dom";
 import source from "../Images/img1.png";
+import Source2 from "../Images/img2.png";
 import {
     MDBContainer,
     MDBNavbar,
@@ -56,6 +57,7 @@ export default function Navbar() {
 
   return (
     <>
+      <Image src={Source2}  alt={"Error"}/>
       <Box bg={useColorModeValue('gray.100', 'gray.900')} px={4}>
         <Flex h={16} alignItems={'center'} justifyContent={'space-between'}>
           <IconButton
@@ -67,7 +69,7 @@ export default function Navbar() {
           />
           <HStack spacing={8} alignItems={'center'}>
             <Box>
-              <Image w={"200px"} src={source} alt={"error"} />
+              <Image w={"200px"} height={"66px"} src={source} alt={"error"} />
             </Box>
             <HStack
               as={'nav'}
