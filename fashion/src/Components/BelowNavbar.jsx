@@ -83,7 +83,7 @@ export default function BelowNavbar() {
             <OnhoverProp NewArray={NewArray} title={"Clothing"} /> 
             <OnhoverProp NewArray={Dresses} title={"Shoes"} /> 
             <OnhoverProp NewArray={NewArray} title={"Accessories"} />
-            <OnhoverProp NewArray={Dresses} title={"Gifts"} />
+            <OnhoverProp NewArray={Dresses} title={"Gift ♥️"} />
             <OnhoverProp NewArray={NewArray} title={"BHLDN Weddings"} />
             <OnhoverProp NewArray={Dresses} title={"Home and Furniture"} />
             <OnhoverProp NewArray={NewArray} title={"Beauty Wellness"} />
