@@ -8,6 +8,7 @@ import FooterBelow from './Components/FooterBelow';
 import AllRoutes from './Components/AllRoutes';
 import BackToTop from './Elements/BacktoTop';
 import SwiperImage from './Elements/Swiper';
+import Login from './Pages/Login';
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
       <SwiperImage/>
       <Footer/>
       <FooterBelow/>
+      {/* <Login/> */}
       <BackToTop/>
     </div>
   );

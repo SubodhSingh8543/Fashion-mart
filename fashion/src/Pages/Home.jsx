@@ -207,7 +207,7 @@ function Home() {
                 <Link  textAlign={"start"} color={"#167a92"}>enter to win</Link>
              </Flex>
             </SimpleGrid>
-            <br />
+            {/* <br /> */}
             <Divider width={"98.5%"} borderColor="grey" className={styles.paddinLeft}/>
             <br />
         </>
