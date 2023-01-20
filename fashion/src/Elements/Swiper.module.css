@@ -1,7 +1,30 @@
 
-.swiperClass{
+/* .swiperClass{ */
     /* border: 2px solid grey; */
     /* box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px; */
-    box-shadow: rgba(112, 112, 112, 0.35) 0px 5px 15px;
-    margin-bottom: 20px;
+    /* box-shadow: rgba(112, 112, 112, 0.35) 0px 5px 15px; */
+    /* margin-bottom: 20px; */
+    /* border: 11px solid #ff0000; */
+    /* padding-bottom: 10px; */
+    /* height: auto; */
+/* } */
+
+.swiperBox>{
+   /* border: 10px solid rebeccapurple; */
+   /* background-color: red; */
+   /* height: 0px; */
 }
+
+.swiperClass {
+    /* border: 12px solid rgb(221, 18, 18); */
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    background-color: white;
+    color: #373737;
+    padding-top: 30px;
+    padding-bottom: 20px;
+    border-radius: 5px;
+    border-top-left-radius: 30px;
+    margin-bottom: 15px;
+    margin-top: 20px;
+    height: auto;
+  }

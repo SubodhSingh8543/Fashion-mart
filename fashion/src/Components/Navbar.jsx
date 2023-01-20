@@ -23,7 +23,8 @@ import {
   Text
 } from '@chakra-ui/react';
 import { HamburgerIcon, CloseIcon ,MoonIcon,SunIcon} from '@chakra-ui/icons';
-// import { NavLink } from "react-router-dom";
+// import {Link as }
+import { Link as RouterLink } from "react-router-dom";
 import source from "../Images/img1.png";
 import Source2 from "../Images/img2.png";
 import {
@@ -114,8 +115,15 @@ export default function Navbar() {
                 />
               </MenuButton>
               <MenuList >
-                <MenuItem>Login</MenuItem>
-                <MenuItem>SignUP</MenuItem>
+                {/* <MenuItem> */}
+                <MenuItem>
+                   <RouterLink to="/login">
+
+                       Login
+                    
+                    </RouterLink>
+             </MenuItem>
+                {/* <MenuItem>SignUP</MenuItem> */}
               </MenuList>
             </Menu>
           </Flex>
