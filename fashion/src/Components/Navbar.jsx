@@ -34,6 +34,12 @@ import {
     MDBInputGroup
   } from 'mdb-react-ui-kit';
 import BelowNavbar from './BelowNavbar';
+import { useContext } from 'react';
+import { AuthContext } from '../Contexts/AuthCotext';
+import { useEffect } from 'react';
+import { useState } from 'react';
+import { CartContext } from '../Contexts/CartContext';
+import { Navigate } from "react-router-dom";
 
 const Links = ['𝐵𝑒 𝒻𝒶𝓈𝒽𝒾𝑜𝓃𝒶𝒷𝓁𝑒', 'Projects', 'Team'];
 
@@ -52,14 +58,43 @@ const NavLink = ({ children }) => (
   </Link>
 );
 
+const getData = async (val) => {
+  if(val){
+    const res = await fetch(`https://test-api-2.onrender.com/products?q=${val}`);
+    const data = await res.json();
+    return data; 
+  }
+
+}
+
 export default function Navbar() {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const { colorMode, toggleColorMode } = useColorMode();
+  const {authState,loginUser,logoutUser} = useContext(AuthContext);
+  // const { searchData,setSearchData } = useContext(SearchContext);
+  const [inputData,setInputData] = useState("");
+  const {searchData,setSearchData} = useContext(CartContext);
+  // const data
+
+  const fetchedData =async (inputData) => {
+    const result = await getData(inputData);
+    setSearchData(result);
+  }
+
+ useEffect(() => {
+  fetchedData(inputData);
+ },[inputData]);
+// console.log(inputData);
+
+if(inputData !== ""){
+ <Navigate to={"/products"} />
+}
+  
 
   return (
     <>
       <Image src={Source2}  alt={"Error"}/>
-      <Box bg={useColorModeValue('gray.100', 'gray.900')} px={4}>
+      <Box bg={'gray.100'} px={4}>
         <Flex h={16} alignItems={'center'} justifyContent={'space-between'}>
           <IconButton
             size={'md'}
@@ -86,7 +121,7 @@ export default function Navbar() {
             <Button border={"none"} outline>Search</Button>
            </ButtonGroup> */}
            <Flex w={"50%"}>
-           <input placeholder='Search Here' style={{width: "100%",border:"1px solid grey"}} _focus={"none"} borderRadius={"none"} />
+           <input onChange={(e) => setInputData(e.target.value)} placeholder='Search Here' style={{width: "100%",border:"1px solid grey"}} _focus={"none"} borderRadius={"none"} />
            <Button border={"1px solid blue"} borderRadius={"none"}>Search</Button>
            </Flex>
 
@@ -94,8 +129,10 @@ export default function Navbar() {
                 {colorMode === 'light' ? <MoonIcon /> : <SunIcon />}
           </Button>
          
-          <Image h={"350px"} w={"35px"} size={'sm'} src={"data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgMjAgMjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgYXJpYS1sYWJlbD0iTXkgU2hvcHBpbmcgQ2FydCIgcm9sZT0iaW1nIiBmb2N1c2FibGU9ImZhbHNlIj48cGF0aCBkPSJNMTQuNzggNi40OVY1LjE4NUMxNC43OCAyLjYwMSAxMi42MzcuNSAxMCAuNVM1LjIyIDIuNjAxIDUuMjIgNS4xODR2MS4zMDdIMHY3Ljk3M0MwIDE3LjI0IDIuMzU3IDE5LjUgNS4yNTQgMTkuNWg5LjQ5M2MyLjg5NyAwIDUuMjUzLTIuMjYgNS4yNTMtNS4wMzZWNi40OXpNNi4yMiA1LjE4NUM2LjIyIDMuMTUzIDcuOTE0IDEuNSAxMCAxLjVzMy43OCAxLjY1MyAzLjc4IDMuNjg0djEuMzA3SDYuMjJ6TTE5IDE0LjQ2NGMwIDIuMjI1LTEuOTA4IDQuMDM2LTQuMjUzIDQuMDM2SDUuMjU0QzIuOTA4IDE4LjUgMSAxNi42OSAxIDE0LjQ2NFY3LjQ5aDQuMjJ2Mi40MjdoMVY3LjQ5MWg3LjU2djIuNDI3aDFWNy40OTFIMTl6Ii8+PC9zdmc+"}  alt={"error"}/>
-         
+         <RouterLink to={"/cart"}>
+         <Image  h={"350px"} w={"35px"} size={'sm'} src={"data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgMjAgMjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgYXJpYS1sYWJlbD0iTXkgU2hvcHBpbmcgQ2FydCIgcm9sZT0iaW1nIiBmb2N1c2FibGU9ImZhbHNlIj48cGF0aCBkPSJNMTQuNzggNi40OVY1LjE4NUMxNC43OCAyLjYwMSAxMi42MzcuNSAxMCAuNVM1LjIyIDIuNjAxIDUuMjIgNS4xODR2MS4zMDdIMHY3Ljk3M0MwIDE3LjI0IDIuMzU3IDE5LjUgNS4yNTQgMTkuNWg5LjQ5M2MyLjg5NyAwIDUuMjUzLTIuMjYgNS4yNTMtNS4wMzZWNi40OXpNNi4yMiA1LjE4NUM2LjIyIDMuMTUzIDcuOTE0IDEuNSAxMCAxLjVzMy43OCAxLjY1MyAzLjc4IDMuNjg0djEuMzA3SDYuMjJ6TTE5IDE0LjQ2NGMwIDIuMjI1LTEuOTA4IDQuMDM2LTQuMjUzIDQuMDM2SDUuMjU0QzIuOTA4IDE4LjUgMSAxNi42OSAxIDE0LjQ2NFY3LjQ5aDQuMjJ2Mi40MjdoMVY3LjQ5MWg3LjU2djIuNDI3aDFWNy40OTFIMTl6Ii8+PC9zdmc+"}  alt={"error"}/>
+         </RouterLink>
+          
           <Flex  alignItems={'center'}>
             <Menu  > 
                 {/* <Box> */}
@@ -122,6 +159,9 @@ export default function Navbar() {
                        Login
                     
                     </RouterLink>
+             </MenuItem>
+             <MenuItem onClick={logoutUser}>
+                  LogOut
              </MenuItem>
                 {/* <MenuItem>SignUP</MenuItem> */}
               </MenuList>
