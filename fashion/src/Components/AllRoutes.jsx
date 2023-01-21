@@ -1,4 +1,5 @@
 import {Routes,Route} from "react-router-dom";
+import CartPage from "../Pages/CartPage";
 import Home from "../Pages/Home";
 import Login from "../Pages/Login";
 import Products from "../Pages/Products";
@@ -10,9 +11,9 @@ function AllRoutes(){
     return(
         <Routes>
          <Route path="/" element={
-            <PrivateRoute>
+            // <PrivateRoute>
                 <Home/>
-            </PrivateRoute>
+            // </PrivateRoute>
         } />;
          <Route path="/login" element={
          <Login/>
@@ -21,6 +22,7 @@ function AllRoutes(){
          <Products/>
          } />;
          <Route path="/products/:id" element={<SingleProductPage/>} />;
+         <Route path="/cart" element={<CartPage/>}/>
         </Routes>
     )
 }

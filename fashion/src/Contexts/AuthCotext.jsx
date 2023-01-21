@@ -17,6 +17,7 @@ function AuthContextProvider({children}) {
     }
 
    const logoutUser = () => {
+    // console.log("dckdjdnaacnj");
     setAuthState(initialState);
    }
 
