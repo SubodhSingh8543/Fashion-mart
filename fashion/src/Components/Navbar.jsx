@@ -40,6 +40,8 @@ import { useEffect } from 'react';
 import { useState } from 'react';
 import { CartContext } from '../Contexts/CartContext';
 import { Navigate } from "react-router-dom";
+import { FaUserAlt } from "react-icons/fa";
+import myImage from "../Images/subodh.png";
 
 const Links = ['𝐵𝑒 𝒻𝒶𝓈𝒽𝒾𝑜𝓃𝒶𝒷𝓁𝑒', 'Projects', 'Team'];
 
@@ -78,23 +80,24 @@ export default function Navbar() {
 
   const fetchedData =async (inputData) => {
     const result = await getData(inputData);
+    // console.log(result);
     setSearchData(result);
   }
 
  useEffect(() => {
   fetchedData(inputData);
  },[inputData]);
-// console.log(inputData);
+console.log(inputData);
 
-if(inputData !== ""){
- <Navigate to={"/products"} />
-}
+// if(inputData !== ""){
+//  <Navigate to={"/products"} />
+// }
   
 
   return (
     <>
       <Image src={Source2}  alt={"Error"}/>
-      <Box bg={'gray.100'} px={4}>
+      <Box bg={useColorModeValue('gray.100', 'gray.900')} px={4}>
         <Flex h={16} alignItems={'center'} justifyContent={'space-between'}>
           <IconButton
             size={'md'}
@@ -105,7 +108,9 @@ if(inputData !== ""){
           />
           <HStack spacing={8} alignItems={'center'}>
             <Box>
+              <RouterLink to="/">
               <Image w={"200px"} height={"66px"} src={source} alt={"error"} />
+              </RouterLink>
             </Box>
             <HStack
               as={'nav'}
@@ -143,13 +148,16 @@ if(inputData !== ""){
                 rounded={'full'}
                 variant={'link'}
                 cursor={'pointer'}
-                minW={0}>
-                <Avatar
-                  size={'sm'}
+                minW={0}> 
+                {authState.isAuth ? (<Avatar
+                  size={'md'}
                   src={
-                    'https://images.unsplash.com/photo-1493666438817-866a91353ca9?ixlib=rb-0.3.5&q=80&fm=jpg&crop=faces&fit=crop&h=200&w=200&s=b616b2c5b373a80ffc9636ba24f7a4a9'
+                    myImage
                   }
-                />
+                />) : (   
+                    <FaUserAlt marginLeft={"20px"} size={"25px"} />    
+                )}
+                
               </MenuButton>
               <MenuList >
                 {/* <MenuItem> */}

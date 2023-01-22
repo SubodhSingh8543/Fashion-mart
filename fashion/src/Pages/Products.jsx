@@ -16,6 +16,7 @@ import { FadeLoader } from "react-spinners";
 import { Link as RouterLink } from "react-router-dom";
 import { useContext } from "react";
 import { CartContext } from "../Contexts/CartContext";
+import { AuthContext } from "../Contexts/AuthCotext";
 
 
 const FilterPrice = ["₹25 - ₹50","₹50 - ₹100","₹100 - ₹200","₹200 - ₹500","More than ₹500"]
@@ -48,7 +49,8 @@ function Products() {
     const [page, setPage] = useState(1);
     const [total,setTotal] = useState(0);
     const [isLoading , setIsLoading] = useState(false);
-    const {searchData,setSearchData,cartData,addItem,removeItem,increaseQuantity,decreaseQuantity} = useContext(CartContext);
+    const {searchData} = useContext(CartContext);
+    const {authState} = useContext(AuthContext);
 
     const fetchedData = async (order,page) => {
       setIsLoading(true);
@@ -73,6 +75,7 @@ function Products() {
    }
 
   //  console.log(data,total);
+  console.log(searchData);
 
     return (
         <>
@@ -88,7 +91,7 @@ function Products() {
             </Box>
             <Box height={"auto"} marginTop={"20px"} marginLeft={"20px"} marginRight={"20px"}>
               <Flex>
-{/* ***************************************** Collaseble *************************************************************************************** *                 */}
+{/* ***************************************** Collaseble *****************************************************************************************/}
                <Box w={"24%"} height={"auto"}>
                 <Text fontSize={"20px"} textAlign={"start"}>Filter by:</Text>
                 <br/>
@@ -104,7 +107,7 @@ function Products() {
                 <Box w={"76%"} height={"auto"} >
                   <Flex justifyContent={"space-between"} alignItems={"center"}>
                     <Text fontFamily={""} fontSize={"30px"} color={"#26262c"}>Dresses</Text>
-                    <Box>
+                <Box>
                   <Button isDisabled={page == 1} onClick={() => setPage(page - 1)}>
                   <FaAngleLeft color={"#167a92"}/>
                   </Button>
@@ -130,8 +133,28 @@ function Products() {
                     <FadeLoader  size={150}  color="blue" />
                  
                   </Flex> ):(
-                    <SimpleGrid columns={[1,2,2,3]} gap={6} marginTop={"15px"} >
-                    {data?.map((el) => (
+                    <SimpleGrid columns={[1,1,2,3]} gap={6} marginTop={"15px"} >
+                    { (searchData !== undefined && searchData !== null && searchData.lenght !== 50) ? searchData?.map((el) => (
+                        <Box key={el.id} >
+                          <RouterLink to={`/products/${el.id}`}>
+                          <Image w={"100%"} h={"500px"} src={el.img} alt={"error"}/>
+                          </RouterLink>
+                          <Text fontSize={"20px"} fontFamily={"Times"} textAlign={"start"}>{el.name}</Text>
+                          <Text fontSize={"20px"} fontFamily={"Times"} textAlign={"start"}>{"₹ "}{el.price}</Text>
+                          <Flex alignItems={"center"} justifyContent={"space-between"}>
+                            <Flex >
+                              <Text color={"#ffcc00"}>★★★</Text>
+                              <Text>★★</Text>
+                            </Flex>
+                           
+                          {/* <Button bg={"#167a92"} color="white">
+                          Add to Cart
+                          </Button> */}
+                          <AlertAddButton singleProduct={el} />
+                          </Flex>
+                          
+                        </Box>
+                    ))  : data?.map((el) => (
                         <Box key={el.id} >
                           <RouterLink to={`/products/${el.id}`}>
                           <Image w={"100%"} h={"500px"} src={el.img} alt={"error"}/>

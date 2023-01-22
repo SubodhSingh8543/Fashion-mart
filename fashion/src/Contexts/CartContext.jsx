@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { Children, createContext, useContext } from "react";
-import { AuthContext } from "./AuthCotext";
 import { useToast,useDisclosure } from '@chakra-ui/react'
 import { useEffect } from "react";
 

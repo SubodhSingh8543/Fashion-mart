@@ -13,8 +13,9 @@ import {
   Grid,
   Text
 } from "@chakra-ui/react";
+import { Link as RouterLink } from "react-router-dom";
 
-export default function OnhoverProp({NewArray,title}) {
+export default function OnhoverProp({ NewArray, title }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
   return (
     <div className="App">
@@ -27,18 +28,20 @@ export default function OnhoverProp({NewArray,title}) {
             onMouseEnter={onOpen}
             onMouseLeave={onClose}
           >
-           <Text fontSize={20}>{title}</Text>
+            <Text fontSize={20}>{title}</Text>
           </MenuButton>
           <MenuList onMouseEnter={onOpen} onMouseLeave={onClose}>
-          <Grid  templateColumns='repeat(3, 1fr)'>
-            {NewArray?.map((el,i) => (
-                <MenuItem key={i}>
+            <Grid templateColumns='repeat(3, 1fr)'>
+              {NewArray?.map((el, i) => (
+                <RouterLink to="/products">
+                  <MenuItem key={i}>
                     <Text>
-                     {el}
+                      {el}
                     </Text>
-                </MenuItem>
-            ))}
-             </Grid>
+                  </MenuItem>
+                </RouterLink>
+              ))}
+            </Grid>
             {/* <MenuItem>Download</MenuItem>
             <MenuItem>Create a Copy</MenuItem>
             <MenuItem>Mark as Draft</MenuItem>

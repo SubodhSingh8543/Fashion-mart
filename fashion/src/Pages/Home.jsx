@@ -1,7 +1,11 @@
 
 import { Grid, Box, Image, Flex,Divider, GridItem, SimpleGrid,Text,Heading,Link } from "@chakra-ui/react";
+import { useContext } from "react";
+import { CartContext } from "../Contexts/CartContext";
 import SwiperImage from "../Elements/Swiper";
 import styles from "./Home.module.css";
+import {Navigate} from "react-router-dom";
+import { useEffect } from "react";
 
 const SliderData1 = [
     {
