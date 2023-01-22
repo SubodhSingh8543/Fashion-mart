@@ -22,7 +22,11 @@ function AllRoutes(){
          <Products/>
          } />;
          <Route path="/products/:id" element={<SingleProductPage/>} />;
-         <Route path="/cart" element={<CartPage/>}/>
+         <Route path="/cart" element={
+            <PrivateRoute>
+                  <CartPage/>
+            </PrivateRoute>
+         }/>
         </Routes>
     )
 }
